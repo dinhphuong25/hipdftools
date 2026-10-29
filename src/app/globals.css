@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --background: #F8F9FA;
+    --surface: #FFFFFF;
+    --surface-hover: #F0F9FF;
+    --surface-muted: #E0F2FE;
+    --foreground: #0F172A;
+    --foreground-muted: #64748B;
+    --border: #E2E8F0;
+    --border-hover: #BAE6FD;
+    --primary: #0284C7;
+    --primary-hover: #0369A1;
+    --primary-light: #F0F9FF;
+    --primary-foreground: #FFFFFF;
+    --accent: #0284C7;
+    --ring: rgba(2, 132, 199, 0.25);
+  }
+
+  .dark {
+    --background: #0B0F17;
+    --surface: #111827;
+    --surface-hover: #1E293B;
+    --surface-muted: #0F172A;
+    --foreground: #F8FAFC;
+    --foreground-muted: #94A3B8;
+    --border: #1E293B;
+    --border-hover: #334155;
+    --primary: #38BDF8;
+    --primary-hover: #0EA5E9;
+    --primary-light: #0C2438;
+    --primary-foreground: #FFFFFF;
+    --accent: #38BDF8;
+    --ring: rgba(56, 189, 248, 0.35);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════════════
+   PREMIUM ULTRA-SLEEK MODERN FLOATING SCROLLBARS
+   ══════════════════════════════════════════════════ */
+/* Firefox & Standards fallback (only when ::-webkit-scrollbar is not supported) */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+  }
+  .dark * {
+    scrollbar-color: rgba(148, 163, 184, 0.22) transparent;
+  }
+}
+
+/* Chrome, Edge, Safari, WebKit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0284C7;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #0369A1;
+  background-clip: padding-box;
+}
+
+/* Dark Mode Scrollbars */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.22);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #38BDF8;
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:active {
+  background-color: #0284C7;
+  background-clip: padding-box;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════
+   GLOBAL MODERN SAAS ANIMATION SUITE
+   ══════════════════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.03);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pingSubtle {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  80%, 100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientFlow 6s ease infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-ping-subtle {
+  animation: pingSubtle 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Interactive Card hover micro-animations */
+.card-hover-fx {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.card-hover-fx:hover {
+  transform: translateY(-4px);
+}
+
+/* Button click & active states */
+button, a {
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+button:active:not(:disabled), a:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Hide scrollbar utility for sleek tabs & chips */
+.hide-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Premium Search Modal Spring Animation */
+@keyframes searchModalIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.93) translateY(-14px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-search-open {
+  animation: searchModalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes backdropFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-backdrop-in {
+  animation: backdropFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity;
+}
+
+
